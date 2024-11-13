@@ -6,6 +6,7 @@ class MoodEntryForm(ModelForm):
     class Meta:
         model = MoodEntry
         fields = ["mood", "feelings", "mood_intensity"]
+    
     def clean_mood(self):
         mood = self.cleaned_data["mood"]
         return strip_tags(mood)

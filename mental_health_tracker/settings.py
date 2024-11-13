@@ -21,13 +21,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-0xapcs$0$g_@$k@+3c$en*k_syld6od5bttf*pt2r*9feq)$b^'
+SECRET_KEY = 'django-insecure-cd#k-iak7h-+xxr7l^$2u#!554gec^+0q3h$*!tc&=!%tdrr5s'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 PRODUCTION = os.getenv("PRODUCTION", False)
 DEBUG = not PRODUCTION
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
+CSRF_TRUSTED_ORIGINS = ["http://localhost","http://127.0.0.1","http://yovan-raju-mentalhealthtracker.pbp.cs.ui.ac.id", "https://yovan-raju-mentalhealthtracker.pbp.cs.ui.ac.id"]
 
 
 # Application definition
@@ -39,8 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'main',
+    'authentication',
     'corsheaders',
-    'main'
 ]
 
 MIDDLEWARE = [
@@ -52,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'mental_health_tracker.urls'
@@ -126,11 +128,18 @@ if DEBUG:
         BASE_DIR / 'static' # merujuk ke /static root project pada mode development
     ]
 else:
-    STATIC_ROOT = BASE_DIR / 'static' # merujuk ke /static root project pada mode production
-
+    STATIC_ROOT = BASE_DIR / 'static' 
+    
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CSRF_TRUSTED_ORIGINS = ["http://localhost","http://127.0.0.1","https://yovan-raju-mentalhealthtracker.pbp.cs.ui.ac.id/", "https://yovan-raju-mentalhealthtracker2.pbp.cs.ui.ac.id/"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "yovan-raju-mentalhealthtracker.pbp.cs.ui.ac.id"]
+
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SAMESITE = 'None'
+SESSION_COOKIE_SAMESITE = 'None'

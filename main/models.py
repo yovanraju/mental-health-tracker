@@ -1,6 +1,6 @@
 from django.db import models
-from django.contrib.auth.models import User
 import uuid
+from django.contrib.auth.models import User
 
 class MoodEntry(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
